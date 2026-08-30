@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cyrel Beauty - Skincare</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      background: #fff;
+      color: #5a3e45;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      border-bottom: 1px solid #f3e1e7;
+      position: relative;
+      flex-wrap: wrap;
+      background: #fff;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #c97b92;
+      letter-spacing: 1px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #7a5c63;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #c97b92;
+    }
+    .cart-icon {
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: relative;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #c97b92;
+      color: #fff;
+      font-size: 0.75rem;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, #fff0f5 0%, #fef4f7 100%);
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      color: #a85c74;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #88676f;
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: #c97b92;
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: #b5657d;
+      transform: translateY(-2px);
+    }
+    .products {
+      padding: 4rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .products h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #a85c74;
+      font-size: 1.8rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      border: 1px solid #f3e1e7;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(201, 123, 146, 0.12);
+    }
+    .card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      background: #fef4f7;
+    }
+    .card-body {
+      padding: 1.3rem;
+    }
+    .card-body h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #5a3e45;
+    }
+    .card-body p {
+      font-size: 0.9rem;
+      color: #88777b;
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+    }
+    .price {
+      color: #c97b92;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      background: #c97b92;
+      color: #fff;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #b5657d;
+    }
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .cart-modal.show {
+      display: block;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f3e1e7;
+    }
+    .cart-header h3 {
+      color: #a85c74;
+      font-size: 1.3rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #88777b;
+      line-height: 1;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f9eff2;
+    }
+    .cart-item .qty {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .cart-item button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: #f3e1e7;
+      cursor: pointer;
+      font-weight: 700;
+      color: #885c6e;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart-total {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      text-align: right;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #a85c74;
+    }
+    .wa-btn {
+      background: #25d366;
+      margin-top: 1.5rem;
+    }
+    .wa-btn:hover {
+      background: #1fb855;
+    }
+    .empty-cart {
+      text-align: center;
+      color: #b8a4a9;
+      padding: 3rem 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      background: #fef4f7;
+      color: #88777b;
+      margin-top: 2rem;
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+    }
+    .overlay.show {
+      display: block;
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .cart-modal { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Cyrel Beauty</div>
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#produk">Produk</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#kontak">Kontak</a>
+    <span class="cart-icon" onclick="toggleCart()">🛒 <span class="cart-badge" id="badge">0</span></span>
+  </nav>
+</header>
+
+<section class="hero" id="beranda">
+  <h1>Glow Naturally, Shine Confidently</h1>
+  <p>Skincare lembut & alami untuk kulit yang sehat dan bercahaya ✨</p>
+  <a href="#produk" class="btn-primary">Lihat Produk Kami</a>
+</section>
+
+<section class="products" id="produk">
+  <h2>Produk Kami</h2>
+  <div class="grid">
+
+    <!-- Micellar Water -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300/fef4f7/c97b92?text=Micellar+Water" alt="Micellar Water">
+      <div class="card-body">
+        <h3>Micellar Water</h3>
+        <p>Membersihkan kotoran & make-up tanpa membuat kulit kering. Lembut & efektif untuk semua jenis kulit.</p>
+        <div class="price">Rp 35.000</div>
+        <button class="btn" onclick="addToCart('Micellar Water', 35000)">+ Keranjang</button>
+      </div>
+    </div>
+
+    <!-- Glow Cleansing Face Wash -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300/fef4f7/c97b92?text=Face+Wash" alt="Glow Cleansing Face Wash">
+      <div class="card-body">
+        <h3>Glow Cleansing Face Wash</h3>
+        <p>Membersihkan sisa kotoran, menyeimbangkan minyak, melembapkan, membuat kulit bersih & bercahaya sehari-hari.</p>
+        <div class="price">Rp 45.000</div>
+        <button class="btn" onclick="addToCart('Glow Cleansing Face Wash', 45000)">+ Keranjang</button>
+      </div>
+    </div>
+
+    <!-- Glow Radiance Serum -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300/fef4f7/c97b92?text=Serum" alt="Glow Radiance Serum">
+      <div class="card-body">
+        <h3>Glow Radiance Serum</h3>
+        <p>Mencerahkan, melembapkan, menjaga kulit sehat bercahaya, meratakan warna kulit kusam.</p>
+        <div class="price">Rp 85.000</div>
+        <button class="btn" onclick="addToCart('Glow Radiance Serum', 85000)">+ Keranjang</button>
+      </div>
+    </div>
+
+    <!-- Glow Hydra Moisturizer -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300/fef4f7/c97b92?text=Moisturizer" alt="Glow Hydra Moisturizer">
+      <div class="card-body">
+        <h3>Glow Hydra Moisturizer</h3>
+        <p>Melembapkan, menenangkan, menjaga kelembapan seharian, membantu menjaga barrier kulit tetap sehat.</p>
+        <div class="price">Rp 65.000</div>
+        <button class="btn" onclick="addToCart('Glow Hydra Moisturizer', 65000)">+ Keranjang</button>
+      </div>
+    </div>
+
+    <!-- Sunscreen SPF 50 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300/fef4f7/c97b92?text=Sunscreen" alt="Sunscreen SPF 50 PA++++">
+      <div class="card-body">
+        <h3>Sunscreen SPF 50 PA++++</h3>
+        <p>Perlindungan maksimal UVA/UVB. Tekstur ringan, tidak lengket, cocok untuk semua jenis kulit.</p>
+        <div class="price">Rp 55.000</div>
+        <button class="btn" onclick="addToCart('Sunscreen SPF 50 PA++++', 55000)">+ Keranjang</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="kontak">
+  <h3 style="margin-bottom: 1rem; color: #a85c74;">Cyrel Beauty</h3>
+  <p>Glow Naturally, Shine Confidently</p>
+  <p>📞 WhatsApp: ganti-nomor-kamu-disini</p>
+  <p>📷 Instagram: @cyrelbeauty</p>
+  <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2026 Cyrel Beauty. All rights reserved.</p>
+</footer>
+
+<!-- Keranjang Belanja -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-modal" id="cartModal">
+  <div class="cart-header">
+    <h3>Keranjang Belanja</h3>
+    <button class="close-btn" onclick="toggleCart()">&times;</button>
+  </div>
+  <div id="cartList"></div>
+  <div class="cart-total">Total: Rp <span id="total">0</span></div>
+  <button class="btn wa-btn" onclick="kirimKeWA()">Pesan via WhatsApp 💬</button>
+</div>
+
+<script>
+let cart = [];
+// ⚠️ Ganti nomor WhatsApp di bawah ini!
+const nomorWA = '6281234567890';
+
+function addToCart(nama, harga) {
+  const item = cart.find(i => i.nama === nama);
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({ nama, harga, qty: 1 });
+  }
+  updateCart();
+}
+
+function updateCart() {
+  const list = document.getElementById('cartList');
+  const badge = document.getElementById('badge');
+  const totalEl = document.getElementById('total');
+  
+  let total = 0;
+  let html = '';
+  
+  if (cart.length === 0) {
+    html = '<p class="empty-cart">Keranjang masih kosong<br>Yuk pilih produk favoritmu!</p>';
+  } else {
+    cart.forEach((item, idx) => {
+      const subtotal = item.harga * item.qty;
+      total += subtotal;
+      html += `
+        <div class="cart-item">
+          <div>
+            <strong>${item.nama}</strong><br>
+            Rp ${item.harga.toLocaleString()}
+          </div>
+          <div class="qty">
+            <button onclick="ubahQty(${idx}, -1)">−</button>
+            ${item.qty}
+            <button onclick="ubahQty(${idx}, 1)">+</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+  
+  list.innerHTML = html;
+  badge.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+  totalEl.textContent = total.toLocaleString();
+}
+
+function ubahQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) {
+    cart.splice(idx, 1);
+  }
+  updateCart();
+}
+
+function toggleCart() {
+  const modal = document.getElementById('cartModal');
+  const overlay = document.getElementById('overlay');
+  modal.classList.toggle('show');
+  overlay.classList.toggle('show');
+}
+
+function kirimKeWA() {
+  if (cart.length === 0) return alert('Keranjang masih kosong!');
+  
+  let pesan = 'Halo Cyrel Beauty! 🌸 Saya mau pesan:\n\n';
+  let total = 0;
+  cart.forEach(item => {
+    const subtotal = item.harga * item.qty;
+    total += subtotal;
+    pesan += `✅ ${item.nama} × ${item.qty} = Rp ${subtotal.toLocaleString()}\n`;
+  });
+  pesan += `\n💰 Total: Rp ${total.toLocaleString()}\n\nSilakan info cara pembayarannya ya. Terima kasih! 💐`;
+  
+  const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
