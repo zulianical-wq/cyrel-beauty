@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyrel Beauty — Glow Your Way</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #fff5f7;
+      --card-bg: #ffffff;
+      --primary: #ff6b95;
+      --primary-dark: #e0537c;
+      --dark: #2b2b2b;
+      --gray: #7a7a7a;
+      --border: #fce4ec;
+      --soft-pink: #ffe0eb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Header & Navigasi */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 6%;
+      background: rgba(255, 245, 247, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-btn {
+      background: var(--soft-pink);
+      color: var(--primary-dark);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .cart-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 4rem 6% 2.5rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero span {
+      background: var(--soft-pink);
+      color: var(--primary-dark);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Produk Grid */
+    .products {
+      padding: 2rem 6%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 107, 149, 0.1);
+    }
+
+    .card-img-container {
+      width: 100%;
+      height: 220px;
+      background: #ffe6ed;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 1.2rem;
+      text-align: left;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--dark);
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-cart {
+      background: var(--soft-pink);
+      color: var(--primary-dark);
+      border: none;
+      padding: 6px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-cart:hover {
+      background: var(--border);
+    }
+
+    .btn-buy {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-buy:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Tentang Kami Section */
+    .about-section {
+      padding: 4rem 6%;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      max-width: 900px;
+      margin: 3rem auto;
+      border-radius: 20px;
+    }
+
+    .about-section h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .about-section p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Review Bintang 5 */
+    .reviews {
+      padding: 2rem 6% 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .review-text {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .reviewer {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--dark);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 6%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gray);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+
+    /* Modal Keranjang */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      text-align: left;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .cart-item-info span {
+      display: block;
+      color: var(--gray);
+      font-size: 0.78rem;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-action-small {
+      background: var(--soft-pink);
+      color: var(--primary-dark);
+      border: none;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .btn-action-small:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.88rem;
+      margin: 1.5rem 0;
+    }
+
+    .checkout-all-btn {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      width: 100%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .checkout-all-btn:hover {
+      opacity: 0.9;
+    }
+
+    .close-modal {
+      background: var(--soft-pink);
+      color: var(--primary-dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    @media(max-width: 768px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Menu Navigasi -->
+  <header>
+    <div class="logo">Cyrel <span>Beauty</span></div>
+    <ul class="nav-links">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#produk">Produk Kami</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#testimoni">Ulasan</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="bukaKeranjang()">🛒 <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <!-- Beranda / Hero Section -->
+  <section class="hero" id="beranda">
+    <span>🐾 Clean & Glow Skin</span>
+    <h1>Glow Your Own Way, <span>Naturally.</span></h1>
+    <p>Skincare ramah kulit untuk membantumu mendapatkan kulit sehat, kenyal, dan glowing maksimal tanpa drama.</p>
+  </section>
+
+  <!-- Produk Kami Section -->
+  <section class="products" id="produk">
+    <h2 class="section-title">Produk Kami</h2>
+    <p class="section-subtitle">Pilihan rangkaian perawatan terbaik untuk kulitmu</p>
+    
+    <div class="product-grid">
+      <!-- Produk 1 -->
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" alt="Gentle Micellar Water">
+        </div>
+        <div class="card-body">
+          <h3>Gentle Micellar Water</h3>
+          <p>Angkat sisa makeup & debu seharian sekejap tanpa bikin kulit terasa kering.</p>
+        </div>
+        <div class="price-row">
+          <span class="price">Rp 35.000</span>
+          <div class="btn-group">
+            <button class="btn-cart" onclick="tambahKeranjang('Gentle Micellar Water', 35000)">+ Keranjang</button>
+            <button class="btn-buy" onclick="beliLangsung('Gentle Micellar Water', 35000)">Beli</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=500&q=80" alt="Cloud Jelly Face Wash">
+        </div>
+        <div class="card-body">
+          <h3>Cloud Jelly Face Wash</h3>
+          <p>Busa lembut melimpah, bersihkan pori secara optimal dan jaga skin barrier.</p>
+        </div>
+        <div class="price-row">
+          <span class="price">Rp 45.000</span>
+          <div class="btn-group">
+            <button class="btn-cart" onclick="tambahKeranjang('Cloud Jelly Face Wash', 45000)">+ Keranjang</button>
+            <button class="btn-buy" onclick="beliLangsung('Cloud Jelly Face Wash', 45000)">Beli</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Glow Radiance Serum">
+        </div>
+        <div class="card-body">
+          <h3>Glow Radiance Serum</h3>
+          <p>Niacinamide booster untuk hempas kusam & bikin kulit wajah auto-glass skin.</p>
+        </div>
+        <div class="price-row">
+          <span class="price">Rp 85.000</span>
+          <div class="btn-group">
+            <button class="btn-cart" onclick="tambahKeranjang('Glow Radiance Serum', 85000)">+ Keranjang</button>
+            <button class="btn-buy" onclick="beliLangsung('Glow Radiance Serum', 85000)">Beli</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produk 4 -->
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Hydra Lock Moisturizer">
+        </div>
+        <div class="card-body">
+          <h3>Hydra Lock Moisturizer</h3>
+          <p>Kunci kelembapan seharian dengan tekstur gel ringan yang cepat meresap.</p>
+        </div>
+        <div class="price-row">
+          <span class="price">Rp 65.000</span>
+          <div class="btn-group">
+            <button class="btn-cart" onclick="tambahKeranjang('Hydra Lock Moisturizer', 65000)">+ Keranjang</button>
+            <button class="btn-buy" onclick="beliLangsung('Hydra Lock Moisturizer', 65000)">Beli</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Kami Section -->
+  <section class="about-section" id="tentang">
+    <h2>Tentang Cyrel Beauty</h2>
+    <p>Cyrel Beauty hadir sebagai solusi perawatan kulit andalan yang diracik khusus dengan bahan-bahan pilihan berkualitas tinggi yang ramah untuk semua jenis kulit. Kami percaya bahwa setiap orang berhak mendapatkan kulit yang sehat, ternutrisi, dan bercahaya dengan caranya sendiri.</p>
+  </section>
+
+  <!-- Review Bintang 5 Section -->
+  <section class="reviews" id="testimoni">
+    <h2 class="section-title">Ulasan Pelanggan</h2>
+    <p class="section-subtitle">Apa kata mereka yang sudah mencoba Cyrel Beauty?</p>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Sumpah face wash-nya enak banget di muka! Nggak bikin ketarik sama sekali dan beneran bikin kulit kerasa lebih bersih dan kenyal."</p>
+        <div class="reviewer">— Sarah A., Jakarta</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Serumnya juara banget buat hempas bekas jerawat kusam. Dalam 2 minggu pemakaian muka jadi kelihatan lebih glowing natural!"</p>
+        <div class="reviewer">— Dinda P., Bandung</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Moisturizer-nya ringan banget kayak air, cepat meresap dan ampuh banget jaga kelembapan seharian di ruangan AC. Recommended!"</p>
+        <div class="reviewer">— Rara M., Surabaya</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Cyrel Beauty. Crafted for your daily glowup ✨</p>
+  </footer>
+
+  <!-- Modal Keranjang -->
+  <div class="modal" id="cartModal">
+    <div class="modal-content">
+      <h3>Keranjang Belanja 🛍️</h3>
+      <div id="cart-items-container">
+        <p class="cart-empty">Keranjang Anda masih kosong.</p>
+      </div>
+      <div id="checkout-all-wrapper" style="display: none;">
+        <button class="checkout-all-btn" onclick="checkoutSemuaWA()">Checkout Semua via WhatsApp 💬</button>
+      </div>
+      <button class="close-modal" onclick="tutupKeranjang()">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+    const nomorWA = '6283899142891';
+
+    function tambahKeranjang(nama, harga) {
+      const existing = cart.find(item => item.nama === nama);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ nama, harga, qty: 1 });
+      }
+      updateCartCount();
+      alert(`${nama} berhasil dimasukkan ke keranjang! ✨`);
+    }
+
+    function beliLangsung(nama, harga) {
+      let pesan = `Halo Kak, saya mau order ${nama} (Rp ${harga.toLocaleString('id-ID')}). Mohon info selanjutnya ya! ✨`;
+      window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    function updateCartCount() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cart-count').innerText = totalItems;
+    }
+
+    function bukaKeranjang() {
+      const container = document.getElementById('cart-items-container');
+      const checkoutWrapper = document.getElementById('checkout-all-wrapper');
+      
+      if (cart.length === 0) {
+        container.innerHTML = `<p class="cart-empty">Keranjang Anda masih kosong.</p>`;
+        checkoutWrapper.style.display = 'none';
+      } else {
+        let html = '';
+        cart.forEach((item, index) => {
+          html += `
+            <div class="cart-item">
+              <div>
+                <strong>${item.nama}</strong>
+                <span>Rp ${item.harga.toLocaleString('id-ID')} x ${item.qty}</span>
+              </div>
+              <div class="cart-item-actions">
+                <button class="btn-action-small" onclick="beliLangsung('${item.nama}', ${item.harga})">Beli</button>
+                <button class="btn-action-small" onclick="hapusItem(${index})">Hapus</button>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+        checkoutWrapper.style.display = 'block';
+      }
+      document.getElementById('cartModal').style.display = 'flex';
+    }
+
+    function checkoutSemuaWA() {
+      if (cart.length === 0) return;
+      let pesan = 'Halo Kak, saya ingin memesan produk berikut:\n\n';
+      let total = 0;
+      cart.forEach(item => {
+        let subtotal = item.harga * item.qty;
+        total += subtotal;
+        pesan += `▪️ ${item.nama} (${item.qty}x) = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+      });
+      pesan += `\n💰 *Total: Rp ${total.toLocaleString('id-ID')}*\n\nMohon informasi total beserta ongkirnya ya. Terima kasih! ✨`;
+      window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    function hapusItem(index) {
+      cart.splice(index, 1);
+      updateCartCount();
+      bukaKeranjang();
+    }
+
+    function tutupKeranjang() {
+      document.getElementById('cartModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
